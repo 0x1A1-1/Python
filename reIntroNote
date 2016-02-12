@@ -1,1 +1,4 @@
 Conflict in the dictionary: new value overwrite
+Multithreading => immutable 
+
+Exceptions:
