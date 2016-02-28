@@ -3,6 +3,9 @@ Created on Feb 26, 2016
 
 @author: Cigarent
 '''
+'''
+this answer exceed time limit of leetode
+'''
 class Solution(object):
     def longestPalindrome(self, s):
         def ispal(self, s):
@@ -22,7 +25,5 @@ class Solution(object):
                 if (ispal(object,s[i:j+1])):
                     if (len(s[i:j+1])>len(longest)):
                         longest=s[i:j+1]
-        return longest
-    
-    
+        return longest   
     longestPalindrome(object, "a")
