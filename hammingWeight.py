@@ -13,3 +13,10 @@ class Solution(object):
             count += n%2
             n=int(n/2)
         return count
+		
+"""
+Simple code!!!!!
+"""
+class Solution(object):
+	def hammingWeight(self, n):
+		return bin(n).count("1")
