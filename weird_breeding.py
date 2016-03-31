@@ -1,32 +1,47 @@
-def answer(str_S):
-    # your code here
-    S = int(str_S)
-    load = 0
-    while check(load)<=S and check(load+1)<=S:
-        load+=500
-    print(load)
-    all = [ check(i) for i in range(load,load+5000)]
-    if S in all:
-        return str( load-500+[i for i,x in enumerate(all) if x==S].pop() )
-    else:
-        return "None"
+sol = {0:1, 1:1, 2:2}
+
         
 def check(s):
-    if s==0:
-        return 1
-    elif s==1:
-        return 1
-    elif s==2:
-        return 2
-    even = float(s)/2
-    if even == int(even):
-        return int(check(even) + check(even+1) + even)
+    global sol
+    if s in sol:
+        return sol[s]
     else:
-        odd = (s-1)/2
-        return int(check(odd-1) + check(odd) +1)
-print(check(36695))
-x="156559"
+        if s%2==0:
+            sol[s] = check(s/2) + check(s/2 + 1) + s/2
+        else:
+            sol[s] = check((s-1)/2-1) + check((s-1)/2) + 1
+    return sol[s]
+
+def bin_search(f, s):
+    start, end  = 0, s
+    while start <= end:
+        mid =(start +end)/2
+        mid_val = check(f(mid))
+        if mid_val == s:
+            return mid
+        elif mid_val<s:
+            start = mid + 1
+        else:
+            end = mid - 1
+    return -1
+    
+def answer(str_S):
+    # your code here
+    s = int(str_S)
+    ans = []
+    even = bin_search(lambda x: x * 2, s)*2
+    odd =  bin_search(lambda x: x * 2 + 1, s)*2 + 1
+    if even >= 0:
+        ans.append(even)
+    if odd >= 0:
+        ans.append(odd)
+    if len(ans)==0:
+        return "None"
+    else:   
+        return str(max(ans))
+
+    
+print(check(65))
+x="122"
 myans= answer(x)
 print(myans)
-if myans!="None":
-    print(check(int(myans))) 
