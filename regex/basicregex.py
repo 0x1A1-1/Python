@@ -14,9 +14,16 @@ y = re.findall('\S+@\S+', line)
 print y
 y = re.findall('\S*@\S*', line)
 print y
+
 #what if I want something start with a From
 #parentheses are not part of the match but they tell where to start and stop
 y =  re.findall('^From (\S*@\S*)', line)
 print y
 y =  re.findall('^From \S*@\S*', line)
+print y
+
+#if I wanna get domain
+y = re.findall('^From.*@(\S+)', line)
+print y
+y = re.findall('@([^ ]*)', line)
 print y
